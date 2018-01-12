@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Danmaku</title>
+</head>
+<body >
+<canvas id="canvas" width="1000" height="300" style="border: 1px solid red; background-color: #666"></canvas>
+
+<script src="../Danmaku.js"></script>
+<script>
+var dm = new Danmaku('canvas');
+
+// 弹幕池大小
+dm.controls.poolSize = 10;
+
+// 速度
+var speed = 1;
+var img = './avatar.jpg';
+
+for(let i=0; i< 1000; i++) {
+    dm.add('---' + i, img, speed++);
+    
+    if(speed > 4) {
+        speed = 1;
+    }
+}
+
+dm.start();
+</script>
+</body>
+</html>
