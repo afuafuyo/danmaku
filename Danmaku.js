@@ -141,6 +141,7 @@ Danmaku.prototype = {
             this.instanceQueue.put(this.queue.take());
         }
         
+        // 清空画布
         this.context.clearRect(0, 0, this.width, this.height);
         
         // 渲染激活队列
@@ -153,14 +154,13 @@ Danmaku.prototype = {
             
             // text
             this.drawText(this.context, dm);
-            
+        }
+        
+        // 检查激活节点状态
+        while(null !== (dm = this.instanceQueue.iterator())) {
             if(dm.isDead) {
-                this.caf.call(this.win, this.animationTimer);
-                
                 this.instanceQueue.remove(dm);
             }
-            
-            //console.log('run')
         }
         
         this.animationTimer = this.raf.call(this.win, function() {
