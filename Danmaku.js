@@ -191,6 +191,7 @@ function DanmakuBarrage(context, text, avatarImage, x, y, options) {
     this.avatar = null;
     this.textWidth = 0;
     this.textRectWidth = 0;
+    this.danmakuWidth = 0;
     
     this.options = {
         speed: 1,
@@ -213,14 +214,8 @@ DanmakuBarrage.prototype.extend = function(origin, options) {
 };
 DanmakuBarrage.prototype.move = function() {
     this.x = this.x - this.options.speed;
-    
-    // imageWidth + margin + textRectWidth + textRectRadius * 2
-    var danmakuWidth = DanmakuBarrage.HEIGHT
-        + DanmakuBarrage.MARGIN
-        + this.textRectWidth
-        + DanmakuBarrage.HEIGHT;
-    
-    if(this.x < -danmakuWidth) {
+        
+    if(this.x < -this.danmakuWidth) {
         this.isDead = true;
     }
 };
@@ -242,6 +237,11 @@ DanmakuBarrage.prototype.init = function(options) {
     this.context.font = this.options.font;
     this.textWidth = Math.ceil(this.context.measureText(this.text).width);
     this.textRectWidth = this.textWidth + DanmakuBarrage.PADDING * 2;
+    // imageWidth + margin + textRectWidth + textRectRadius * 2
+    this.danmakuWidth = DanmakuBarrage.HEIGHT
+        + DanmakuBarrage.MARGIN
+        + this.textRectWidth
+        + DanmakuBarrage.HEIGHT;
     
     //this.context.restore();
 };
@@ -317,6 +317,13 @@ DanmakuQueue.prototype = {
         return null === this.currentIteratorNode
             ? (this.currentIteratorNode = null, null)
             : this.currentIteratorNode.data;
+    },
+    each(callback) {
+        for(var current = this.headNode; null !== current; current = current.next) {
+            if(false === callback(current.data)) {
+                break;
+            }
+        }
     },
     remove: function(data) {
         var current = this.headNode;

@@ -8,6 +8,7 @@
 <canvas id="canvas" width="1000" height="300" style="border: 1px solid red; background-color: #666"></canvas>
 
 <script src="../Danmaku.js"></script>
+<script src="../DanmakuMouse.js"></script>
 <script>
 var dm = new Danmaku('canvas');
 
@@ -27,6 +28,9 @@ for(let i=0; i< 1000; i++) {
 }
 
 dm.start();
+dm.registerSelectHandler((dm) => {
+    console.log('dm selected: ' + dm.text);
+});
 </script>
 </body>
 </html>
