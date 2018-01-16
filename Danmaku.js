@@ -318,7 +318,7 @@ DanmakuQueue.prototype = {
             ? (this.currentIteratorNode = null, null)
             : this.currentIteratorNode.data;
     },
-    each(callback) {
+    each: function(callback) {
         for(var current = this.headNode; null !== current; current = current.next) {
             if(false === callback(current.data)) {
                 break;

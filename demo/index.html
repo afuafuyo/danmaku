@@ -28,7 +28,7 @@ for(let i=0; i< 1000; i++) {
 }
 
 dm.start();
-dm.registerSelectHandler((dm) => {
+dm.registerSelectHandler(function(dm){
     console.log('dm selected: ' + dm.text);
 });
 </script>
