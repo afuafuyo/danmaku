@@ -114,7 +114,7 @@ Danmaku.prototype = {
         
         //context.restore();
     },
-    add: function(text, avatarImage, speed, color) {
+    add: function(text, avatarImage, speed, color, other) {
         var y = Math.floor(Math.random() * (this.height - DanmakuBarrage.HEIGHT));
         
         this.queue.put(new DanmakuBarrage(
@@ -125,7 +125,8 @@ Danmaku.prototype = {
             y,
             {
                 speed: speed,
-                color: color
+                color: color,
+                other: other
             }
         ));
     },
@@ -197,7 +198,8 @@ function DanmakuBarrage(context, text, avatarImage, x, y, options) {
         speed: 1,
         color: '#111',
         font: new DanmakuFont(14, 'Microsoft Yahei').toString(),
-        backgroundColor: 'rgba(255, 255, 255, .6)'
+        backgroundColor: 'rgba(255, 255, 255, .6)',
+        other: null
     };
     
     this.init(options);
