@@ -16,7 +16,9 @@ Danmaku.prototype.registerSelectHandler = function(handler) {
                 && y > dm.y
                 && y < dm.y + DanmakuBarrage.HEIGHT) {
                 
-                handler(dm);
+                setTimeout(function(){
+                    handler(dm);
+                }, 10);
                 
                 return false;
             }
