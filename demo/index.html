@@ -20,7 +20,7 @@ var speed = 1;
 var img = './avatar.jpg';
 
 for(let i=0; i< 1000; i++) {
-    dm.add('---' + i, img, speed++);
+    dm.send('---' + i, img, speed++);
     
     if(speed > 4) {
         speed = 1;

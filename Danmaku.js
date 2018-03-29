@@ -14,7 +14,7 @@
  * var speed = 1;
  *
  * for(let i=0; i< 1000; i++) {
- *      dm.add('---' + i, '', speed++);
+ *      dm.send('---' + i, '', speed++);
  *      
  *      if(speed > 4) {
  *          speed = 1;
@@ -114,7 +114,7 @@ Danmaku.prototype = {
         
         //context.restore();
     },
-    add: function(text, avatarImage, speed, color, other) {
+    send: function(text, avatarImage, speed, color, other) {
         var y = Math.floor(Math.random() * (this.height - DanmakuBarrage.HEIGHT));
         
         this.queue.put(new DanmakuBarrage(
