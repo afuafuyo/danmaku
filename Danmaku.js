@@ -3,7 +3,7 @@
  *
  * @param {String} id
  *
- * @author yu
+ * @author afu
  *
  * var dm = new Danmaku('canvasId');
  *
@@ -182,6 +182,7 @@ Danmaku.prototype = {
  */
 function DanmakuBarrage(context, text, avatarImage, x, y, options) {
     this.isDead = false;
+    this.isActive = true;
     
     this.context = context;
     this.text = text;
@@ -215,6 +216,11 @@ DanmakuBarrage.prototype.extend = function(origin, options) {
     }
 };
 DanmakuBarrage.prototype.move = function() {
+    // 激活状态才移动
+    if(!this.isActive) {
+        return;
+    }
+    
     this.x = this.x - this.options.speed;
         
     if(this.x < -this.danmakuWidth) {
