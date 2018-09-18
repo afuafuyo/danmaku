@@ -166,6 +166,8 @@ Danmaku.prototype = {
         
         this.animationTimer = this.raf.call(this.win, function() {
             _self.start();
+            
+            _self = null;
         });
     }
 };
