@@ -3,7 +3,7 @@
  *
  * @param {String} id
  *
- * @author 月十
+ * @author afu
  *
  * var dm = new Danmaku('canvasId');
  *
